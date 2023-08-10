@@ -1,0 +1,85 @@
+﻿@model BlogHub.Models.BlogModel
+
+@{
+    ViewData["Title"] = "Edit Blog";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Blog")">Blog List</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Blog</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>Edit Blog</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-controller="Blog" asp-action="EditBlog" method="post" class="needs-validation" novalidate>
+                <input type="hidden" asp-for="BlogId" />
+
+                <div class="form-group">
+                    <label for="Title">Title</label>
+                    <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid title.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="BlogDescription">Blog Description</label>
+                    <textarea class="form-control" id="BlogDescription" name="BlogDescription" rows="5" required>@Model.BlogDescription</textarea>
+                    <div class="invalid-feedback">
+                        Please provide a valid blog description.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Category">Category</label>
+                    <select class="form-control" id="Category" name="CategoryId" required>
+                        <option value="">Select a Category</option>
+                        @foreach (var category in (IEnumerable<BlogHub.Models.CategoryModel>)ViewData["Categories"])
+                        {
+                            <option value="@category.CategoryId" @(category.CategoryId == Model.CategoryId ? "selected" : "")>@category.Name</option>
+                        }
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a category from the list.
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Edit Blog</button>
+                <a href="@Url.Action("Index", "Blog")" class="btn btn-secondary">Back to Blog List</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // JavaScript code for custom form validation using Bootstrap
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms to apply custom Bootstrap validation styles
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+}

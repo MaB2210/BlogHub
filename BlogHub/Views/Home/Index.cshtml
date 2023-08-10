@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mt-5 text-center">
+    <!-- Added 'text-center' class to center the content -->
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <!-- Added 'mx-auto' class to center the content horizontally -->
+            <h1 class="display-4">Welcome to Our Blogging Website</h1>
+            <p>Explore and Share Your Thoughts</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text">View and manage users.</p>
+                    <a href="@Url.Action("Index", "User")" class="btn btn-primary">View Users</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Blogs</h5>
+                    <p class="card-text">Explore blogs created by users.</p>
+                    <a href="@Url.Action("Index", "Blog")" class="btn btn-primary">View Blogs</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Categories</h5>
+                    <p class="card-text">Browse blogs by categories.</p>
+                    <a href="@Url.Action("Index", "Category")" class="btn btn-primary">View Categories</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

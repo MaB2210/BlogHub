@@ -1,0 +1,106 @@
+﻿@model BlogHub.Models.CategoryModel
+
+@{
+    ViewData["Title"] = "Delete Category";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Category")">Category List</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Delete Category</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>Delete Category</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4>@Model.Name</h4>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Category ID:</dt>
+                        <dd class="col-sm-8">@Model.CategoryId</dd>
+
+                        <dt class="col-sm-4">Category Description:</dt>
+                        <dd class="col-sm-8">@Model.CategoryDescription</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <form asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@Model.CategoryId" method="post" class="needs-validation" novalidate>
+                <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                <a href="@Url.Action("Index", "Category")" class="btn btn-secondary">Back to Category List</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Additional CSS styles for DeleteCategory.cshtml */
+    .mt-5 {
+        margin-top: 50px;
+    }
+
+    .breadcrumb {
+        background-color: #f8f9fa;
+        padding: 5px 15px;
+    }
+
+    .breadcrumb-item {
+        font-size: 14px;
+    }
+
+        .breadcrumb-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: #6c757d;
+        }
+
+    h2 {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .card-header {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+
+    .card-body dl.row dt,
+    .card-body dl.row dd {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .card-body dl.row dt {
+        font-weight: 600;
+    }
+
+    .btn-danger,
+    .btn-secondary {
+        margin-top: 20px;
+        margin-right: 10px;
+    }
+</style>
