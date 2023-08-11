@@ -46,7 +46,7 @@
                         <option value="">Select a Category</option>
                         @foreach (var category in (IEnumerable<BlogHub.Models.CategoryModel>)ViewData["Categories"])
                         {
-                            <option value="@category.CategoryId" @(category.CategoryId == Model.CategoryId ? "selected" : "")>@category.Name</option>
+                            //<option value="@category.CategoryId" @(category.CategoryId == Model.CategoryId ? "selected" : "")>@category.Name</option>
                         }
                     </select>
                     <div class="invalid-feedback">

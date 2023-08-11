@@ -1,9 +1,11 @@
 ﻿using BlogHub.Data;
 using BlogHub.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogHub.Controllers
 {
+  
     public class UserController : Controller
     {
         public readonly ApplicationDbContext _context;
