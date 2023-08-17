@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <form asp-controller="Blog" asp-action="EditBlog" method="post" class="needs-validation" novalidate>
+            <form asp-controller="Blog" asp-action="EditBlog" asp-route-id="@Model.BlogId" method="post" class="needs-validation" novalidate>
                 <input type="hidden" asp-for="BlogId" />
 
                 <div class="form-group">
@@ -44,9 +44,9 @@
                     <label for="Category">Category</label>
                     <select class="form-control" id="Category" name="CategoryId" required>
                         <option value="">Select a Category</option>
-                        @foreach (var category in (IEnumerable<BlogHub.Models.CategoryModel>)ViewData["Categories"])
+                        @foreach (var category in (SelectList)ViewData["Categories"])
                         {
-                            //<option value="@category.CategoryId" @(category.CategoryId == Model.CategoryId ? "selected" : "")>@category.Name</option>
+                            <option value="@category.Value" selected="@(category.Value == Model.CategoryId.ToString())">@category.Text</option>
                         }
                     </select>
                     <div class="invalid-feedback">

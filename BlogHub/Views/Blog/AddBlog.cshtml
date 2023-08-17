@@ -39,18 +39,32 @@
                     </div>
                 </div>
                 <div class="form-group">
-    <label for="Category">Category</label>
-    <select class="form-control" id="Category" name="CategoryId" required>
-        <option value="">Select a Category</option>
-        @foreach (var category in (SelectList)ViewData["Categories"])
-        {
-            <option value="@category.Value">@category.Text</option>
-        }
-    </select>
-    <div class="invalid-feedback">
-        Please select a category from the list.
-    </div>
-</div>
+                    <label for="Category">Category</label>
+                    <select class="form-control" id="Category" name="CategoryId" required>
+                        <option value="">Select a Category</option>
+                        @foreach (var category in (SelectList)ViewData["Categories"])
+                        {
+                            <option value="@category.Value">@category.Text</option>
+                        }
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a category from the list.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="User">User</label>
+                    <select class="form-control" id="User" name="Userid" required>
+                        <option value="">Select a User</option>
+                        @foreach (var user in (SelectList)ViewData["users"])
+                        {
+                            <option value="@user.Value">@user.Text</option>
+                        }
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a user from the list.
+                    </div>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Add Blog</button>
                 <a href="@Url.Action("Index", "Blog")" class="btn btn-secondary">Back to Blog List</a>
@@ -58,26 +72,3 @@
         </div>
     </div>
 </div>
-
-@section Scripts {
-    <script>
-        // JavaScript code for custom form validation using Bootstrap
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                // Fetch all the forms to apply custom Bootstrap validation styles
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
-}

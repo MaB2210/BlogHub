@@ -29,6 +29,7 @@
                         <th>Title</th>
                         <th>Blog Description</th>
                         <th>Category</th>
+                        <th>Users</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -40,6 +41,7 @@
                             <td>@blog.Title</td>
                             <td>@blog.BlogDescription</td>
                             <td>@blog.Category</td>
+                            <td>@blog.User</td>
                             <td>
                                 <a href="@Url.Action("BlogDetails", "Blog", new { id = blog.BlogId })" class="btn btn-info">Details</a>
                                 <a href="@Url.Action("EditBlog", "Blog", new { id = blog.BlogId })" class="btn btn-warning">Edit</a>
