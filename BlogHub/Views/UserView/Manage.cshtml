@@ -46,12 +46,24 @@
                     <td>
                         <form method="post" asp-action="AddToAdmin" asp-route-id="@user.Id">
                             <button type="submit" class="btn btn-primary"> Add To Admin </button>
+                        </form> <br>
+                        <form method="post" asp-action="AddToBlogger" asp-route-id="@user.Id">
+                            <button type="submit" class="btn btn-primary"> Add To Blogger </button>
+                        </form> <br>
+                        <form method="post" asp-action="AddToViewer" asp-route-id="@user.Id">
+                            <button type="submit" class="btn btn-primary"> Add To Viewer </button>
                         </form>
                     </td>
                     <td>
                         <form method="post" asp-action="RemoveFromAdmin" asp-route-id="@user.Id">
                             <button type="submit" class="btn btn-primary"> Remove From Admin </button>
-                        </form>
+                        </form><br>
+                        <form method="post" asp-action="RemoveFromBlogger" asp-route-id="@user.Id">
+                            <button type="submit" class="btn btn-primary"> Remove From Blogger </button>
+                        </form><br>
+                        <form method="post" asp-action="RemoveFromViewer" asp-route-id="@user.Id">
+                            <button type="submit" class="btn btn-primary"> Remove From Viewer </button>
+                        </form><br>
                     </td>
                 </tr>
             }
@@ -65,9 +77,18 @@
     <form method="post" asp-action="CreateAdminRole">
         <button type="submit" class="btn btn-primary"> Create Admin Role </button>
     </form>
+    
 }
+
 else
 {
+    <form method="post" asp-action="CreateBloggerRole">
+        <button type="submit" class="btn btn-primary"> Create Blogger Role </button>
+    </form>
+    <form method="post" asp-action="CreateViewerRole">
+        <button type="submit" class="btn btn-primary"> Create Viewer Role </button>
+    </form>
+
     <table class="table table-bordered table-striped table-sm">
         <thead>
             <tr><th>Role</th><th></th></tr>
@@ -79,8 +100,9 @@ else
                     <td>@role.Name</td>
                     <td>
                         <form method="post" asp-action="DeleteRole" asp-route-id="@role.Id">
-                            <button type="submit" class="btn btn-primary"> Delete Role </button>
+                            <button type="submit" class="btn btn-primary"> Delete</button>
                         </form>
+                        
                     </td>
                 </tr>
             }

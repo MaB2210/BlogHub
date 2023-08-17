@@ -20,6 +20,18 @@
                 <a class="nav-link text-dark" asp-controller="UserView" asp-action="Manage">UserAdmin</a>
             </li>
         }
+        @if ((await UserManager.GetRolesAsync(await UserManager.FindByNameAsync(User.Identity.Name))).Contains("Blogger"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="UserView" asp-action="Manage">Blogger</a>
+            </li>
+        }
+        @if ((await UserManager.GetRolesAsync(await UserManager.FindByNameAsync(User.Identity.Name))).Contains("Viewer"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="UserView" asp-action="Manage">Viewer</a>
+            </li>
+        }
     }
     else
     {

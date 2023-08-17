@@ -42,11 +42,11 @@ namespace BlogHub.Controllers
         [HttpPost]
         public IActionResult AddBlog(BlogModel bm)
         {
-            // Set the Category property to the selected CategoryId from the form
-            BlogModel blog = new BlogModel();
-            CategoryModel cat = _context.categoryModels.Find(bm.CategoryId); // Fetch category name
             
-            UserModel user = _context.userModels.Find(bm.UserId); // Fetch category name
+            BlogModel blog = new BlogModel();
+            CategoryModel cat = _context.categoryModels.Find(bm.CategoryId); 
+            
+            UserModel user = _context.userModels.Find(bm.UserId); 
 
             blog.Title = bm.Title;
             blog.BlogDescription = bm.BlogDescription;
@@ -81,7 +81,7 @@ namespace BlogHub.Controllers
 
             // Create a SelectList for categories and users to be used in the view
             ViewData["Categories"] = new SelectList(categories, "CategoryId", "Name");
-            ViewData["Users"] = new SelectList(users, "Userid", "Username");
+            
 
             return View(blog); // Pass the blog post to the view for editing
          }
@@ -90,10 +90,7 @@ namespace BlogHub.Controllers
         [HttpPost]
         public IActionResult EditBlog(int id,BlogModel bm)
         {
-            if (id != bm.BlogId)
-            {
-                return Content("ID doesnot match BlogID"); // Return a 404 Not Found if the blog post doesn't exist
-            }
+            
 
             // Set the Category property to the selected CategoryId from the form
             BlogModel blog = _context.blogModels.Find(id);
@@ -117,34 +114,37 @@ namespace BlogHub.Controllers
             blog.CategoryModel = cat;
             blog.UserModel = user;
 
+            _context.blogModels.Update(blog);
             _context.SaveChanges(); // Save changes to the database
             return RedirectToAction("Index"); // Redirect to the blog list after editing
         }
 
             //GET: Blog/Details
-            public IActionResult Details()
+            public IActionResult BlogDetails(int id)
         {
-            return Content("get blog/Details");
-        }
+            BlogModel blog = _context.blogModels.Find(id);
 
-        //POST: Blog/Details
-        [HttpPost]
-        public IActionResult Details(BlogModel bm)
-        {
-            return Content("POST: BLog/Details" + bm.GetType);
+            if (blog == null)
+            {
+                return Content("Details not found");
+            }
+            return View(blog);
         }
 
         //GET : Blog/Delete
-        public IActionResult Delete()
+        public IActionResult DeleteBlog(int id)
         {
-            return Content("get: Blog/delete");
+            var blog = _context.blogModels.Find(id);
+            return View(blog);
         }
 
         //POST: User/Delete
         [HttpPost]
-        public IActionResult Delete(BlogModel bm)
+        public IActionResult DeleteBlog(BlogModel bm)
         {
-            return Content("post: Blog/delete" + bm.GetType);
+            _context.blogModels.Remove(bm);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

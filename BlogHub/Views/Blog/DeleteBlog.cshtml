@@ -1,5 +1,51 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model BlogHub.Models.BlogModel
+
 @{
+    ViewData["Title"] = "Delete Blog";
 }
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-o+RD1LT2p8hOJ4W47f3Fpo5c9lEQVxHj4u9Xm2AuW4ZI&" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Blog")">Blog List</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Delete Blog</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2>Delete Blog</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="blog-details">
+                    <h3>@Model.Title</h3>
+                    <p>@Model.BlogDescription</p>
+                    <p>Blog ID: @Model.BlogId</p>
+                </div>
+                <div class="alert alert-danger">
+                    Are you sure you want to delete the blog with the title: <strong>@Model.Title</strong>?
+                </div>
+                <form asp-controller="Blog" asp-action="DeleteBlog" asp-route-id="@Model.BlogId" method="post">
+                    <button type="submit" class="btn btn-danger">Delete Blog</button>
+                    <a asp-controller="Blog" asp-action="Index" class="btn btn-secondary">Back to Blog List</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
